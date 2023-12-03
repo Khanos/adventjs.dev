@@ -1,0 +1,23 @@
+# .gitignore
+
+# Dependencias
+/node_modules
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Entorno de ejecución
+.env
+
+# Archivos de construcción
+/dist
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,23 @@
+{
+  "name": "adventjs.dev",
+  "version": "1.0.0",
+  "description": "🎄 AdventJS Challenges Repository 🎁",
+  "main": "findFirstRepeated.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khanos/adventjs.dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Khanos/adventjs.dev/issues"
+  },
+  "homepage": "https://github.com/Khanos/adventjs.dev#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
