@@ -5,13 +5,13 @@ const findFirstRepeated = (gifts) => {
     const id = gifts[i];
 
     if (map.has(id)) {
-      return id;
+      return id; // first repeated gift and we're done
     } else {
-      map.set(id, i);
+      map.set(id, i); // store the index of the gift and keep going
     }
   }
 
-  return -1;
+  return -1; // no repeated gifts
 };
 
 module.exports = findFirstRepeated;
