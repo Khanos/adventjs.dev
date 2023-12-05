@@ -1,12 +1,12 @@
 function decode(message) {
-  const parts = message.split(' ');
-  const decodedMessage = parts.map(part => {
-    const word = part.replace('(', '').replace(')', '').split('').reverse().join('');
-    const match = word.match(/^[a-zA-Z]+/);
-    return match ? word.slice(match[0].length) + match[0] : word;
-  }).join(' ');
-
-  return decodedMessage;
+  let prev = '';
+  while (prev !== message) {
+    prev = message;
+    message = message.replace(/\(([^()]+)\)/g, (match, word) => {
+      return word.split('').reverse().join('');
+    });
+  }
+  return message;
 }
 
 module.exports = decode;
