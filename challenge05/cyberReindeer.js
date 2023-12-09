@@ -1,40 +1,24 @@
 function cyberReindeer(road, time) {
-  let roadArray = road.split('');
-  const result = [];
-  let isOpen = false;
-  let isWaiting = false;
-  let delay = 0;
-  for (let i = 0; i < time; i++) {
-    const shouldOpen = i !== 0 && i % 5 === 0;
-    if (shouldOpen) {
-      isOpen = !isOpen;
-      if(isOpen) {
-        isWaiting = false;
+  const raceData = [road];
+  road = road.replace('S', '.');
+  let reindeerPosition = 2;
+  let pointer = 2;
+  let raceTime = 1;
+  while (raceTime < time) {
+      const symbol = road[pointer];
+      raceData.push(
+          road.slice(0, reindeerPosition - 1) + 'S' +
+          road.slice(reindeerPosition)
+      )
+      if (++raceTime === 5) {
+          road = road.replace(/\|/g, '*');
+      } else if (symbol === '|') {
+          continue;
       }
-    }
-    roadArray = roadArray.map((item) => {
-      if (/[|*]/g.test(item)) {
-        if (isOpen) {
-          return '*';
-        } else {
-          return '|';
-        }
-      }
-      return item;
-    });
-    if(i === 0) {
-      result.push(roadArray.join(''));
-    } else if(roadArray[i] !== '|' && !isWaiting) {
-      roadArray[i-delay] = 'S';
-      roadArray[i-1-delay] = /[|*]/g.test(road.split('')[i-1-delay]) ? (isOpen ? '*' : '|') : '.';
-      result.push(roadArray.join(''));
-    } else {
-      isWaiting = true;
-      delay++;
-      result.push(roadArray.join(''));
-    }
+      reindeerPosition++;
+      pointer++;
   }
-  return result;
+  return raceData;
 }
 
 module.exports = cyberReindeer;

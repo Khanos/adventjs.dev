@@ -2,7 +2,7 @@ const cyberReindeer = require('./cyberReindeer');
 
 describe("Challenge 05 - cyberReindeer", () => {
 
-  it('should return an array', () => {
+  it('should handle a road', () => {
     expect(Array.isArray(cyberReindeer('S..|...|..', 10))).toBe(true);
     expect(cyberReindeer('S..|...|..', 10)).toStrictEqual([
       'S..|...|..', // estado inicial
