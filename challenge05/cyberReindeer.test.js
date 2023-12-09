@@ -4,7 +4,7 @@ describe("Challenge 05 - cyberReindeer", () => {
 
   it('should return an array', () => {
     expect(Array.isArray(cyberReindeer('S..|...|..', 10))).toBe(true);
-    expect(cyberReindeer('S..|...|..', 10)).toBe([
+    expect(cyberReindeer('S..|...|..', 10)).toStrictEqual([
       'S..|...|..', // estado inicial
       '.S.|...|..', // avanza el trineo la carretera
       '..S|...|..', // avanza el trineo la carretera

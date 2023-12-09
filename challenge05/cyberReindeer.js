@@ -2,20 +2,18 @@ function cyberReindeer(road, time) {
   let roadArray = road.split('');
   const result = [];
   let isOpen = false;
+  let isWaiting = false;
   let delay = 0;
   for (let i = 0; i < time; i++) {
     const shouldOpen = i !== 0 && i % 5 === 0;
     if (shouldOpen) {
       isOpen = !isOpen;
-    }
-    if(i-1 >= 0 && roadArray[i-1] === 'S' && (roadArray[i] !== '*' && roadArray[i] !== '|')) {
-      roadArray[i-1] = '.'; 
-    }
-    if(roadArray[i-2] === 'S') {
-      roadArray[i-2] = '.';
+      if(isOpen) {
+        isWaiting = false;
+      }
     }
     roadArray = roadArray.map((item) => {
-      if (item === '|' || item === '*') {
+      if (/[|*]/g.test(item)) {
         if (isOpen) {
           return '*';
         } else {
@@ -24,12 +22,14 @@ function cyberReindeer(road, time) {
       }
       return item;
     });
-    if (roadArray[i] === 'S' && result.length === 0) {
+    if(i === 0) {
       result.push(roadArray.join(''));
-    } else if (roadArray[i] === '.') {
+    } else if(roadArray[i] !== '|' && !isWaiting) {
       roadArray[i-delay] = 'S';
+      roadArray[i-1-delay] = /[|*]/g.test(road.split('')[i-1-delay]) ? (isOpen ? '*' : '|') : '.';
       result.push(roadArray.join(''));
-    } else if (roadArray[i] === '*' || roadArray[i] === '|' ) {
+    } else {
+      isWaiting = true;
       delay++;
       result.push(roadArray.join(''));
     }
